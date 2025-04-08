@@ -214,6 +214,7 @@ return [
             'size' => 'tamanho',
             'content' => 'conteúdo',
 
+
         ],
     ],
 
@@ -228,6 +229,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+
+        'motivo_id' => 'motivo',
+        'situacao_id' => 'situação',
+    ],
 
 ];

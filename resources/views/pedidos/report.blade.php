@@ -28,9 +28,9 @@
 
             /** Define the footer rules **/
             footer {
-                position: fixed; 
-                bottom: 0cm; 
-                left: 0cm; 
+                position: fixed;
+                bottom: 0cm;
+                left: 0cm;
                 right: 0cm;
                 height: 2cm;
                 background-color: rgb(179, 179, 179);
@@ -54,28 +54,78 @@
 </head>
     <body>
         <header>
-            Permissões do Sistema
+            Pedidos
         </header>
 
         <footer>
-          <span>{{ date('d/m/Y H:i:s') }} - </span><span class="page-number">Página </span>         
+          <span>{{ date('d/m/Y H:i:s') }} - </span><span class="page-number">Página </span>
         </footer>
 
         <main>
+            @foreach($dataset as $row)
             <table  class="bordered" width="100%">
-              <thead>
-                <th style="text-align:left;">Nome</th>
-                <th style="text-align:left;">Descrição</th>
-              </thead>
               <tbody>
-                @foreach($dataset as $row)
+
+
                 <tr>
-                  <td>{{$row->name}}</td>
-                  <td>{{$row->description}}</td>
+                    <td colspan="8">
+                        <label for="nome"><strong>Nome</strong></label>
+                        <div id="nome">{{ $row->nome }}</div>
+                    </td>
+                    <td colspan="4">
+                        <label for="matricula"><strong>Matrícula</strong></label>
+                        <div id="matricula">{{ $row->matricula }}</div>
+                    </td>
+
+
                 </tr>
-                @endforeach
+
+                <tr>
+                    <td colspan="6">
+                        <label for="cargo"><strong>Cargo</strong></label>
+                        <div id="cargo">{{ $row->cargo }}</div>
+                    </td>
+
+                    <td colspan="6">
+                        <label for="cargo"><strong>Cargo</strong></label>
+                        <div id="cargo">{{ $row->Setor}}</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="6">
+                        <label for="motivo"><strong>Motivo</strong></label>
+                        <div id="motivo">{{ $row->motivo->descricao }}</div>
+                    </td>
+                    <td colspan="6">
+                        <label for="situacao"><strong>Situação</strong></label>
+                        <div id="situacao">{{ $row->situacao->descricao }}</div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="12">
+                        <label for="justificativa"><strong>Notas</strong></label>
+                        <div id="justificativa">{{ $row->nota }}</div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td colspan="12">
+                        <label for="data_cadastro"><strong>Quando</strong></label>
+                        <div id="data_cadastro">{{ $row->created_at->format('d/m/Y H:i') }}</div>
+                    </td>
+
+                </tr>
+
+
+
               </tbody>
             </table>
+            <br>
+            @endforeach
         </main>
     </body>
 </html>

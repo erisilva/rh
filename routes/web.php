@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MotivoController;
 use App\Http\Controllers\SituacaoController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\FormController;
 
 
 
@@ -85,3 +86,6 @@ Route::get('/pedidos/export/csv', [PedidoController::class, 'exportcsv'])->name(
 Route::get('/pedidos/export/pdf', [PedidoController::class, 'exportpdf'])->name('pedidos.export.pdf')->middleware('auth'); // Export PDF
 
 Route::resource('/pedidos', PedidoController::class)->middleware('auth');
+
+
+Route::resource('/forms', FormController::class)->only('index', 'show', 'create', 'store');

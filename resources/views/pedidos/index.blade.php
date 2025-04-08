@@ -167,7 +167,7 @@
                         <button type="submit" class="btn btn-primary btn-sm"><x-icon icon='search' />
                             {{ __('Search') }}</button>
 
-                        <a href="{{ route('pedidos.index', ['nome' => '', 'matricula' => '', 'cargo' => '', 'setor' => '', 'situacao' => '', 'motivo' => '']) }}"
+                        <a href="{{ route('pedidos.index', ['nome' => '', 'matricula' => '', 'cargo' => '', 'setor' => '', 'situacao_id' => '', 'motivo_id' => '']) }}"
                             class="btn btn-secondary btn-sm" role="button"><x-icon icon='stars' /> {{ __('Reset') }}</a>
                     </div>
 

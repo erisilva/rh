@@ -185,9 +185,15 @@ class PedidoController extends Controller
             'Pragma' => 'public'
         ];
 
-        $pedidos = Pedido::select('nome', 'matricula', 'cargo', 'setor', 'motivo_id', 'situacao_id')
-                                ->orderBy('nome', 'asc')
-                                ->filter(request(['nome', 'matricula', 'cargo', 'setor', 'situacao_id', 'motivo_id']));
+        $pedidos = Pedido::select('nome', 'matricula', 'cargo', 'setor')
+                    ->addSelect(['motivo_descricao' => Motivo::select('descricao')
+                        ->whereColumn('motivos.id', 'pedidos.motivo_id')
+                        ->limit(1)])
+                    ->addSelect(['situacao_descricao' => Situacao::select('descricao')
+                        ->whereColumn('situacaos.id', 'pedidos.situacao_id')
+                        ->limit(1)])
+                    ->orderBy('nome', 'asc')
+                    ->filter(request(['nome', 'matricula', 'cargo', 'setor', 'situacao_id', 'motivo_id']));
 
         $list = $pedidos->get()->toArray();
 
@@ -218,7 +224,7 @@ class PedidoController extends Controller
 
         return Pdf::loadView('pedidos.report', [
             'dataset' => Pedido::orderBy('id', 'asc')
-                        ->filter(request(['nome', 'matricula', 'cargo', 'setor', 'situacao', 'motivo']))->get()
+                        ->filter(request(['nome', 'matricula', 'cargo', 'setor', 'situacao_id', 'motivo_id']))->get()
         ])->download(__('Pedidos') . '_' . date("Y-m-d H:i:s") . '.pdf');
     }
 }

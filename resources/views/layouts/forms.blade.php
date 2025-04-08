@@ -22,12 +22,8 @@
     <!-- Icones -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <!-- bootwatch css themes -->
-    @if (Auth::guest())
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    @else
-    <link rel="stylesheet" href="{{ asset('css/' . Auth::user()->theme->filename) }}">
-    @endif
+
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.cerulean.min.css') }}">
 
     <!-- Custom css -->
     @yield('css-header')
