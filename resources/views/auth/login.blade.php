@@ -3,6 +3,17 @@
 @section('title', __('Login'))
 
 @section('content')
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <p class="display-1 text-center"><x-icon icon='people' /> {{ config('app.name', 'Laravel') }}</p>
+
+        </div>
+    </div>
+</div>
+
 <div class="container py-4">
     <div class="row justify-content-center">
         <div class="col-md-8">

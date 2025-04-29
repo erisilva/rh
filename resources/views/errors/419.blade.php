@@ -10,7 +10,7 @@
 			  <div class="card-body">
 			  	<h5 class="card-title"><i class="bi bi-exclamation-triangle"></i> Erro 419: {{ __('Page Expired') }}</h5>
     			<p class="card-text">{{ $exception->getMessage() }}</p>
-    			<a href="#" class="btn btn-primary" onclick="location.reload()"><i class="bi bi-arrow-clockwise"></i> {{ __('Reload Page') }}</a>
+    			<a href="{{ url('/') }}" class="btn btn-primary"><i class="bi bi-arrow-clockwise"></i> {{ __('Reload Page') }}</a>
 			  </div>
 			</div>
         </div>

@@ -129,7 +129,7 @@
                             class="text-danger">(*)</strong></label>
                         <div class="col-md-6">
                             <input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror"
-                                name="captcha" required autocomplete="captcha">
+                                name="captcha" required autocomplete="captcha" placeholder="Digite o código da imagem acima">
                             @error('captcha')
                                 <div class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
