@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 200);
-            $table->string('matricula', 25);
             $table->string('cargo', 150);
             $table->string('setor', 150);
             $table->text('nota')->nullable();

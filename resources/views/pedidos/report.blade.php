@@ -68,15 +68,10 @@
 
 
                 <tr>
-                    <td colspan="8">
+                    <td colspan="12">
                         <label for="nome"><strong>Nome</strong></label>
                         <div id="nome">{{ $row->nome }}</div>
                     </td>
-                    <td colspan="4">
-                        <label for="matricula"><strong>Matrícula</strong></label>
-                        <div id="matricula">{{ $row->matricula }}</div>
-                    </td>
-
 
                 </tr>
 

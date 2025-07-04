@@ -12,10 +12,15 @@ class Pedido extends Model
         'motivo_id',
         'situacao_id',
         'nome',
-        'matricula',
+        'cpf',
         'cargo',
         'setor',
         'nota',
+    ];
+
+    protected $casts = [
+        'inicio' => 'datetime',
+        'fim' => 'datetime',
     ];
 
     public function motivo() : BelongsTo

@@ -35,15 +35,6 @@
                     @enderror
                 </div>
 
-                <div class="col-md-3">
-                    <label for="matricula" class="form-label">Matrícula <strong class="text-danger">(*)</strong></label>
-                    <input type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula"
-                        value="{{ old('matricula') ?? $pedido->matricula }}">
-                    @error('matricula')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 <div class="col-md-6">
                     <label for="cargo" class="form-label">Cargo <strong class="text-danger">(*)</strong></label>
                     <input type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo"
@@ -63,7 +54,7 @@
                 </div>
 
                 <div class="col-12">
-                    <label for="nota">Anotações</label>
+                    <label for="nota">Descreva a solicitação:</label>
                     <textarea class="form-control" name="nota" rows="3">{{ old('nota') ?? $pedido->nota }}</textarea>
                 </div>
 

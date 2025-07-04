@@ -32,9 +32,9 @@ class PedidoController extends Controller
 
         return view('pedidos.index', [
             'pedidos' => Pedido::orderBy('nome', 'asc')
-                            ->filter(request(['nome', 'matricula', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
+                            ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
                             ->paginate(session('perPage', '5'))
-                            ->appends(request(['nome', 'matricula', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
+                            ->appends(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
                             ->withPath(env('APP_URL', null) . '/pedidos'),
             'perpages' => Perpage::orderBy('valor')->get(),
             'motivos' => Motivo::orderBy('descricao', 'asc')->get(),
@@ -64,7 +64,6 @@ class PedidoController extends Controller
 
         $pedido = $request->validate([
             'nome' => 'required|max:200',
-            'matricula' => 'required|max:25',
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
             'motivo_id' => 'required|exists:motivos,id',
@@ -122,7 +121,6 @@ class PedidoController extends Controller
 
         $input = $request->validate([
             'nome' => 'required|max:200',
-            'matricula' => 'required|max:25',
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
             'motivo_id' => 'required|exists:motivos,id',
@@ -185,7 +183,7 @@ class PedidoController extends Controller
             'Pragma' => 'public'
         ];
 
-        $pedidos = Pedido::select('nome', 'matricula', 'cargo', 'setor')
+        $pedidos = Pedido::select('nome', 'cargo', 'setor')
                     ->addSelect(['motivo_descricao' => Motivo::select('descricao')
                         ->whereColumn('motivos.id', 'pedidos.motivo_id')
                         ->limit(1)])
@@ -193,7 +191,7 @@ class PedidoController extends Controller
                         ->whereColumn('situacaos.id', 'pedidos.situacao_id')
                         ->limit(1)])
                     ->orderBy('nome', 'asc')
-                    ->filter(request(['nome', 'matricula', 'cargo', 'setor', 'situacao_id', 'motivo_id']));
+                    ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']));
 
         $list = $pedidos->get()->toArray();
 
@@ -224,7 +222,7 @@ class PedidoController extends Controller
 
         return Pdf::loadView('pedidos.report', [
             'dataset' => Pedido::orderBy('id', 'asc')
-                        ->filter(request(['nome', 'matricula', 'cargo', 'setor', 'situacao_id', 'motivo_id']))->get()
+                        ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))->get()
         ])->download(__('Pedidos') . '_' . date("Y-m-d H:i:s") . '.pdf');
     }
 }

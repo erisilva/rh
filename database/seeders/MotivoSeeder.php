@@ -13,18 +13,21 @@ class MotivoSeeder extends Seeder
     public function run(): void
     {
         $motivos = [
-            'Motivo 1',
-            'Motivo 2',
-            'Motivo 3',
-            'Motivo 4',
-            'Motivo 5',
-            'Motivo 6',
-            'Motivo 7',
+            ['id' => 1, 'descricao' => 'Outros'],
+            ['id' => 2, 'descricao' => 'Contratação'],
+            ['id' => 3, 'descricao' => 'Demissão'],
+            ['id' => 4, 'descricao' => 'Férias com apenas um período'],
+            ['id' => 5, 'descricao' => 'Férias com dois períodos'],
+            ['id' => 6, 'descricao' => 'Licença Maternidade'],
+            ['id' => 7, 'descricao' => 'Licença Médica (até 15 dias)'],
+            ['id' => 8, 'descricao' => 'Licença Médica (acima de 15 dias)'],
+            ['id' => 9, 'descricao' => 'Transferência'],
         ];
 
         foreach ($motivos as $motivo) {
             \App\Models\Motivo::create([
-                'descricao' => $motivo,
+            'id' => $motivo['id'],
+            'descricao' => $motivo['descricao'],
             ]);
         }
     }

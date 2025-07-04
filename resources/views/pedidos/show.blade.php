@@ -26,10 +26,6 @@
             </li>
 
             <li class="list-group-item">
-                {{ 'Matrícula : ' . $pedido->matricula }}
-            </li>
-
-            <li class="list-group-item">
                 {{ 'Cargo : ' . $pedido->cargo }}
             </li>
 

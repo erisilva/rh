@@ -1,16 +1,15 @@
 @extends('layouts.forms')
 
-@section('title', 'Título do Formulário')
+@section('title', 'Formulário de Solicitações de Pedido')
 
 @section('content')
     <div class="container py-4 text-bg-light">
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <h1 class="py-3">Título do Formulário</h1>
+                <h1 class="py-3">Formulário de Solicitações de Pedido</h1>
 
                 <div class="alert alert-light py-3" role="alert">
-                    Descrição do formulário. A ser criado.<br>
                     <strong>Observação:</strong> Campos com <strong class="text-danger">(*)</strong> são obrigatórios.
                 </div>
 
@@ -27,22 +26,6 @@
                                 name="nome" value="{{ old('nome') }}" required autofocus>
 
                             @error('nome')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="matricula" class="col-md-4 col-form-label text-md-end">Nº Matrícula: <strong
-                                class="text-danger">(*)</strong></label>
-
-                        <div class="col-md-6">
-                            <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror"
-                                name="matricula" value="{{ old('matricula') }}" required>
-
-                            @error('matricula')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -83,7 +66,7 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="nota" class="col-md-4 col-form-label text-md-end">Observações:</label>
+                        <label for="nota" class="col-md-4 col-form-label text-md-end">Descreva a solicitação:</label>
 
                         <div class="col-md-6">
                             <textarea class="form-control" name="nota" rows="3">{{ old('nota') ?? '' }}</textarea>
