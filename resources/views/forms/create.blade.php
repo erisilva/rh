@@ -23,9 +23,25 @@
 
                         <div class="col-md-6">
                             <input id="nome" type="text" class="form-control @error('nome') is-invalid @enderror"
-                                name="nome" value="{{ old('nome') }}" required autofocus>
+                                name="nome" value="{{ old('nome') }}" required>
 
                             @error('nome')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="cpf" class="col-md-4 col-form-label text-md-end">CPF: <strong
+                                class="text-danger">(*)</strong></label>
+
+                        <div class="col-md-6">
+                            <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror"
+                                name="cpf" value="{{ old('cpf') }}" required>
+
+                            @error('cpf')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -66,11 +82,16 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="nota" class="col-md-4 col-form-label text-md-end">Descreva a solicitação:</label>
+                        <label for="nota" class="col-md-4 col-form-label text-md-end">Descreva a solicitação: <strong
+                                class="text-danger">(*)</strong></label>
 
                         <div class="col-md-6">
-                            <textarea class="form-control" name="nota" rows="3">{{ old('nota') ?? '' }}</textarea>
+                            <textarea class="form-control" name="nota" rows="5" required>{{ old('nota') ?? '' }}</textarea>
                         </div>
+
+                        @error('nota')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="row mb-3">
@@ -135,4 +156,17 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script-footer')
+    <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.inputmask.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#cpf").inputmask({ "mask": "999.999.999-99" });
+
+        });
+    </script>
+
 @endsection

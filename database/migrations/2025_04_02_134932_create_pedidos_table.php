@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('nome', 200);
             $table->string('cargo', 150);
             $table->string('setor', 150);
-            $table->text('nota')->nullable();
+            $table->text('nota');
+            $table->string('cpf');
             $table->foreignId('motivo_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignId('situacao_id')->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->timestamps();

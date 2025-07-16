@@ -15,6 +15,7 @@ use App\Models\Motivo;
 use App\Models\Situacao;
 use App\Models\Perpage;
 use App\Models\Log;
+use App\Rules\Cpf;
 
 class PedidoController extends Controller
 {
@@ -64,13 +65,13 @@ class PedidoController extends Controller
 
         $pedido = $request->validate([
             'nome' => 'required|max:200',
+            'cpf' => ['required', 'max:15', new Cpf()],
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
             'motivo_id' => 'required|exists:motivos,id',
             'situacao_id' => 'required|exists:situacaos,id',
+            'nota' => 'required|max:750',
         ]);
-
-        $pedido['nota'] = $request->input('nota');
 
         $new_pedido = Pedido::create($pedido);
 
@@ -121,13 +122,13 @@ class PedidoController extends Controller
 
         $input = $request->validate([
             'nome' => 'required|max:200',
+            'cpf' => ['required', 'max:15', new Cpf()],
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
             'motivo_id' => 'required|exists:motivos,id',
             'situacao_id' => 'required|exists:situacaos,id',
+            'nota' => 'required|max:750',
         ]);
-
-        $input['nota'] = $request->input('nota');
 
         $pedido->update($input);
 
@@ -183,7 +184,7 @@ class PedidoController extends Controller
             'Pragma' => 'public'
         ];
 
-        $pedidos = Pedido::select('nome', 'cargo', 'setor')
+        $pedidos = Pedido::select('nome', 'cpf', 'cargo', 'setor')
                     ->addSelect(['motivo_descricao' => Motivo::select('descricao')
                         ->whereColumn('motivos.id', 'pedidos.motivo_id')
                         ->limit(1)])

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Motivo;
 use App\Models\Pedido;
+use App\Rules\Cpf;
 
 class FormController extends Controller
 {
@@ -114,17 +115,18 @@ class FormController extends Controller
 
         $pedido = $request->validate([
             'nome' => 'required|max:200',
+            'cpf' => ['required', 'max:15', new Cpf()],
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
             'motivo_id' => 'required|exists:motivos,id',
-            'captcha' => 'required|captcha'
+            'captcha' => 'required|captcha',
+            'nota' => 'required|max:750',
         ],
         [
             'captcha.required' => __('Enter the characters shown in the figure above'),
             'captcha.captcha' => __('Captcha typed incorrectly'),
         ]);
 
-        $pedido['nota'] = $request->input('nota');
         $pedido['situacao_id'] = 1; // Default situation
 
         $new_pedido = Pedido::create($pedido);

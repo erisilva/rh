@@ -35,6 +35,15 @@
                     @enderror
                 </div>
 
+                <div class="col-md-3">
+                    <label for="cpf" class="form-label">CPF <strong class="text-danger">(*)</strong></label>
+                    <input type="text" class="form-control @error('cpf') is-invalid @enderror" name="cpf" id="cpf"
+                        value="{{ old('cpf') ?? $pedido->cpf }}">
+                    @error('cpf')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="col-md-6">
                     <label for="cargo" class="form-label">Cargo <strong class="text-danger">(*)</strong></label>
                     <input type="text" class="form-control @error('cargo') is-invalid @enderror" name="cargo"
@@ -54,8 +63,8 @@
                 </div>
 
                 <div class="col-12">
-                    <label for="nota">Descreva a solicitação:</label>
-                    <textarea class="form-control" name="nota" rows="3">{{ old('nota') ?? $pedido->nota }}</textarea>
+                    <label for="nota">Descreva a solicitação: <strong class="text-danger">(*)</strong></label>
+                    <textarea class="form-control" name="nota" rows="3" required>{{ old('nota') ?? $pedido->nota }}</textarea>
                 </div>
 
                 {{-- Motivo --}}
@@ -125,4 +134,16 @@
 
         </div>
     </div>
+@endsection
+@section('script-footer')
+    <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.inputmask.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("#cpf").inputmask({ "mask": "999.999.999-99" });
+
+        });
+    </script>
+
 @endsection
