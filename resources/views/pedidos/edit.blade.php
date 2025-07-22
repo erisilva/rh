@@ -27,7 +27,7 @@
             <div class="row g-3">
 
                 <div class="col-md-9">
-                    <label for="nome" class="form-label">Nome Completo <strong class="text-danger">(*)</strong></label>
+                    <label for="nome" class="form-label">Nome do Colaborador <strong class="text-danger">(*)</strong></label>
                     <input type="text" class="form-control @error('nome') is-invalid @enderror" name="nome"
                         value="{{ old('nome') ?? $pedido->nome }}">
                     @error('nome')
@@ -60,11 +60,6 @@
                     @error('setor')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                </div>
-
-                <div class="col-12">
-                    <label for="nota">Descreva a solicitação: <strong class="text-danger">(*)</strong></label>
-                    <textarea class="form-control" name="nota" rows="3" required>{{ old('nota') ?? $pedido->nota }}</textarea>
                 </div>
 
                 {{-- Motivo --}}
@@ -107,6 +102,10 @@
                     @endif
                 </div>
 
+                <div class="col-12">
+                    <label for="nota">Descrição do pedido: <strong class="text-danger">(*)</strong></label>
+                    <textarea class="form-control" name="nota" rows="3" required>{{ old('nota') ?? $pedido->nota }}</textarea>
+                </div>
 
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary">

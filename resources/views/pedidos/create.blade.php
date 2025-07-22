@@ -22,7 +22,7 @@
             <div class="row g-3">
 
                 <div class="col-md-9">
-                    <label for="nome" class="form-label">Nome Completo <strong class="text-danger">(*)</strong></label>
+                    <label for="nome" class="form-label">Nome do Colaborador <strong class="text-danger">(*)</strong></label>
                     <input type="text" class="form-control @error('nome') is-invalid @enderror" name="nome"
                         value="{{ old('nome') ?? '' }}">
                     @error('nome')
@@ -54,14 +54,6 @@
                     <input type="text" class="form-control @error('setor') is-invalid @enderror" name="setor"
                         value="{{ old('setor') ?? '' }}">
                     @error('setor')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="col-12">
-                    <label for="nota">Descreva a solicitação: <strong class="text-danger">(*)</strong></label>
-                    <textarea class="form-control" name="nota" rows="5" required>{{ old('nota') ?? '' }}</textarea>
-                    @error('nota')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -102,7 +94,13 @@
                     @endif
                 </div>
 
-
+                <div class="col-12">
+                    <label for="nota">Descrição do pedido <strong class="text-danger">(*)</strong></label>
+                    <textarea class="form-control" name="nota" rows="5" required>{{ old('nota') ?? '' }}</textarea>
+                    @error('nota')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <div class="col-12">
                     <button type="submit" class="btn btn-primary"><x-icon icon='plus-circle' /> {{ __('Save') }}</button>

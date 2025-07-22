@@ -49,8 +49,8 @@
                 <thead>
                     <tr>
                         <th>Enviado em</th>
-                        <th>Nome</th>
-                        <th>Matrícula</th>
+                        <th>Nome do Colaborador</th>
+                        <th>CPF</th>
                         <th>Cargo</th>
                         <th>Setor</th>
                         <th>Motivo</th>
@@ -68,7 +68,7 @@
                                 {{ $pedido->nome }}
                             </td>
                             <td class="text-nowrap">
-                                {{ $pedido->matricula }}
+                                {{ $pedido->cpf }}
                             </td>
                             <td>
                                 {{ $pedido->cargo }}

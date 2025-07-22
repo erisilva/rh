@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="{{ route('pedidos.index') }}">
-                        {{ __('Permissions') }}
+                        Pedidos
                     </a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
@@ -22,11 +22,15 @@
         <ul class="list-group list-group-flush">
 
             <li class="list-group-item">
-                {{ 'Nome : ' . $pedido->nome }}
+                {{ 'Nome do Colaborador : ' . $pedido->nome }}
             </li>
 
             <li class="list-group-item">
                 {{ 'Cargo : ' . $pedido->cargo }}
+            </li>
+
+            <li class="list-group-item">
+                {{ 'CPF : ' . $pedido->cpf }}
             </li>
 
             <li class="list-group-item">
@@ -39,6 +43,10 @@
 
             <li class="list-group-item">
                 {{ 'Motivo : ' . $pedido->motivo->descricao }}
+            </li>
+
+            <li class="list-group-item">
+                {{ 'Descrição do pedido : ' . $pedido->nota }}
             </li>
 
         </ul>

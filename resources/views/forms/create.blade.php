@@ -7,10 +7,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                <h1 class="py-3">Formulário de Solicitações de Pedido</h1>
+                <h1 class="py-3">Formulário de Gestão de Terceirizados</h1>
 
                 <div class="alert alert-light py-3" role="alert">
-                    <strong>Observação:</strong> Campos com <strong class="text-danger">(*)</strong> são obrigatórios.
+                    <p>
+                        Este formulário destina-se ao registro e encaminhamento de solicitações relacionadas à gestão de colaboradores terceirizados. Por meio deste canal, devem ser formalizadas demandas como: solicitação de férias, desligamentos, substituição de colaborador, licenças médicas, licença maternidade e novas contratações. O preenchimento correto e completo das informações contribuirá para maior agilidade no atendimento e na tramitação das solicitações junto aos setores responsáveis.
+                    </p>
+                    <strong>Observação:</strong> Campos com <strong class="text-danger">(*)</strong> são de preenchimento obrigatório.
                 </div>
 
                 <form method="POST" action="{{ route('forms.store') }}">
@@ -18,7 +21,7 @@
 
 
                     <div class="row mb-3">
-                        <label for="nome" class="col-md-4 col-form-label text-md-end">Nome Completo: <strong
+                        <label for="nome" class="col-md-4 col-form-label text-md-end">Nome do Colaborador: <strong
                                 class="text-danger">(*)</strong></label>
 
                         <div class="col-md-6">
@@ -82,19 +85,6 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="nota" class="col-md-4 col-form-label text-md-end">Descreva a solicitação: <strong
-                                class="text-danger">(*)</strong></label>
-
-                        <div class="col-md-6">
-                            <textarea class="form-control" name="nota" rows="5" required>{{ old('nota') ?? '' }}</textarea>
-                        </div>
-
-                        @error('nota')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="row mb-3">
                         <label for="motivo_id" class="col-md-4 col-form-label text-md-end">Motivo: <strong
                                 class="text-danger">(*)</strong></label>
 
@@ -114,6 +104,19 @@
                                 </div>
                             @endif
                         </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="nota" class="col-md-4 col-form-label text-md-end">Descrição do pedido: <strong
+                                class="text-danger">(*)</strong></label>
+
+                        <div class="col-md-6">
+                            <textarea class="form-control" name="nota" rows="5" required>{{ old('nota') ?? '' }}</textarea>
+                        </div>
+
+                        @error('nota')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3 row">
