@@ -114,16 +114,10 @@
 
                 <div class="row g-3">
 
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <label for="nome" class="form-label">Nome</label>
                         <input type="text" class="form-control" id="nome" name="nome"
                             value="{{ session()->get('pedido_nome') }}">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="matricula" class="form-label">Matrícula</label>
-                        <input type="text" class="form-control" id="matricula" name="matricula"
-                            value="{{ session()->get('pedido_matricula') }}">
                     </div>
 
                     <div class="col-md-6">
@@ -170,7 +164,6 @@
                         <a href="{{ route('pedidos.index', ['nome' => '', 'matricula' => '', 'cargo' => '', 'setor' => '', 'situacao_id' => '', 'motivo_id' => '']) }}"
                             class="btn btn-secondary btn-sm" role="button"><x-icon icon='stars' /> {{ __('Reset') }}</a>
                     </div>
-
 
                 </div>
 

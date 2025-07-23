@@ -21,6 +21,7 @@ Route::get('/about', function () {
 Route::get('/', function () {
     #if the user is logged return index view, if not logged return login view
     if (Auth::check()) {
+        // return app(\App\Http\Controllers\HomeController::class)->index();
         return view('index');
     } else {
         return view('auth.login');
