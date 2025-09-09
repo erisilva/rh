@@ -32,7 +32,7 @@ class PedidoController extends Controller
         }
 
         return view('pedidos.index', [
-            'pedidos' => Pedido::orderBy('nome', 'asc')
+            'pedidos' => Pedido::orderBy('created_at', 'desc')
                             ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
                             ->paginate(session('perPage', '5'))
                             ->appends(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
