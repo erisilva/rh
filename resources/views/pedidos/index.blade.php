@@ -2,6 +2,10 @@
 
 @section('title', 'Pedidos')
 
+@section('css-header')
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css') }}">
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <nav aria-label="breadcrumb">
@@ -137,31 +141,44 @@
                         <select class="form-select" id="motivo_id" name="motivo_id">
                             <option value="" selected="true">Exibir Todos ...</option>
                             @foreach($motivos as $motivo)
-                            <option value="{{ $motivo->id }}" @selected(session()->get('pedido_motivo_id') == $motivo->id) >
-                              {{ $motivo->descricao }}
-                            </option>
+                                <option value="{{ $motivo->id }}" @selected(session()->get('pedido_motivo_id') == $motivo->id)>
+                                    {{ $motivo->descricao }}
+                                </option>
                             @endforeach
                         </select>
-                      </div>
+                    </div>
 
-                      <div class="col-md-6">
+                    <div class="col-md-6">
                         <label for="situacao_id" class="form-label">Situação</label>
                         <select class="form-select" id="situacao_id" name="situacao_id">
                             <option value="" selected="true">Exibir Todos ...</option>
                             @foreach($situacaos as $situacao)
-                            <option value="{{ $situacao->id }}" @selected(session()->get('pedido_situacao_id') == $situacao->id) >
-                              {{ $situacao->descricao }}
-                            </option>
+                                <option value="{{ $situacao->id }}"
+                                    @selected(session()->get('pedido_situacao_id') == $situacao->id)>
+                                    {{ $situacao->descricao }}
+                                </option>
                             @endforeach
                         </select>
-                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="data_inicio" class="form-label">Data de registro inicial</label>
+                        <input type="text" class="form-control" id="data_inicio" name="data_inicio"
+                            value="{{ session()->get('pedido_data_inicio') }}" autocomplete="off">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="data_fim" class="form-label">Data de registro final</label>
+                        <input type="text" class="form-control" id="data_fim" name="data_fim"
+                            value="{{ session()->get('pedido_data_fim') }}" autocomplete="off">
+                    </div>
 
 
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary btn-sm"><x-icon icon='search' />
                             {{ __('Search') }}</button>
 
-                        <a href="{{ route('pedidos.index', ['nome' => '', 'matricula' => '', 'cargo' => '', 'setor' => '', 'situacao_id' => '', 'motivo_id' => '']) }}"
+                        <a href="{{ route('pedidos.index', ['nome' => '', 'matricula' => '', 'cargo' => '', 'setor' => '', 'situacao_id' => '', 'motivo_id' => '', 'data_inicio' => '', 'data_fim' => '']) }}"
                             class="btn btn-secondary btn-sm" role="button"><x-icon icon='stars' /> {{ __('Reset') }}</a>
                     </div>
 
@@ -175,6 +192,9 @@
 
 @endsection
 @section('script-footer')
+    <script src="{{ asset('js/jquery-3.6.4.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+    <script src="{{ asset('locales/bootstrap-datepicker.pt-BR.min.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var perpage = document.getElementById('perpage');
@@ -183,5 +203,24 @@
                 window.open("{{ route('pedidos.index') }}" + "?perpage=" + perpage, "_self");
             });
         });
+
+        $('#data_inicio').datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            clearBtn: true,
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('#data_fim').datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            clearBtn: true,
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
+
     </script>
 @endsection

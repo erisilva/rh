@@ -59,6 +59,12 @@ class Pedido extends Model
         if (!session()->exists('pedido_situacao_id')){
             session(['pedido_situacao_id' => '']);
         }
+        if (!session()->exists('pedido_data_inicio')){
+            session(['pedido_data_inicio' => '']);
+        }
+        if (!session()->exists('pedido_data_fim')){
+            session(['pedido_data_fim' => '']);
+        }
 
         // update session values if the request has a value
         if (Arr::exists($filters, 'nome')) {
@@ -85,6 +91,14 @@ class Pedido extends Model
             session(['pedido_situacao_id' => $filters['situacao_id'] ?? '']);
         }
 
+        if (Arr::exists($filters, 'data_inicio')) {
+            session(['pedido_data_inicio' => $filters['data_inicio'] ?? '']);
+        }
+
+        if (Arr::exists($filters, 'data_fim')) {
+            session(['pedido_data_fim' => $filters['data_fim'] ?? '']);
+        }
+
         // query if session filters are not empty
         if (trim(session()->get('pedido_nome')) !== '') {
             $query->where('nome', 'like', '%' . session()->get('pedido_nome') . '%');
@@ -108,6 +122,14 @@ class Pedido extends Model
 
         if (trim(session()->get('pedido_situacao_id')) !== '') {
             $query->where('situacao_id', session()->get('pedido_situacao_id'));
+        }
+
+        if (trim(session()->get('pedido_data_inicio')) !== '') {
+            $query->where('created_at', '>=',  date('Y-m-d', strtotime(str_replace('/', '-', session()->get('pedido_data_inicio')))));
+        }
+
+        if (trim(session()->get('pedido_data_fim')) !== '') {
+            $query->where('created_at', '<=',  date('Y-m-d', strtotime(str_replace('/', '-', session()->get('pedido_data_fim')))));
         }
     }
 }

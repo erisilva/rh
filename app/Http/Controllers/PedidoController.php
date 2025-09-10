@@ -33,9 +33,9 @@ class PedidoController extends Controller
 
         return view('pedidos.index', [
             'pedidos' => Pedido::orderBy('created_at', 'desc')
-                            ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
+                            ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))
                             ->paginate(session('perPage', '5'))
-                            ->appends(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))
+                            ->appends(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))
                             ->withPath(env('APP_URL', null) . '/pedidos'),
             'perpages' => Perpage::orderBy('valor')->get(),
             'motivos' => Motivo::orderBy('descricao', 'asc')->get(),
@@ -192,7 +192,7 @@ class PedidoController extends Controller
                         ->whereColumn('situacaos.id', 'pedidos.situacao_id')
                         ->limit(1)])
                     ->orderBy('nome', 'asc')
-                    ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']));
+                    ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']));
 
         $list = $pedidos->get()->toArray();
 
@@ -223,7 +223,7 @@ class PedidoController extends Controller
 
         return Pdf::loadView('pedidos.report', [
             'dataset' => Pedido::orderBy('id', 'asc')
-                        ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id']))->get()
+                        ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))->get()
         ])->download(__('Pedidos') . '_' . date("Y-m-d H:i:s") . '.pdf');
     }
 }
