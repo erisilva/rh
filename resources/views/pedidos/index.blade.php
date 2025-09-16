@@ -56,7 +56,9 @@
                         <th>Nome do Colaborador</th>
                         <th>CPF</th>
                         <th>Cargo</th>
-                        <th>Setor</th>
+                        <th>Setor/Unidade</th>
+                        <th>Gestor</th>
+                        <th>Matrícula</th>
                         <th>Motivo</th>
                         <th>Situação</th>
                         <th></th>
@@ -79,6 +81,12 @@
                             </td>
                             <td>
                                 {{ $pedido->setor }}
+                            </td>
+                            <td>
+                                {{ $pedido->gestor }}
+                            </td>
+                            <td>
+                                {{ $pedido->matricula }}
                             </td>
                             <td>
                                 {{ $pedido->motivo->descricao }}
@@ -137,6 +145,18 @@
                     </div>
 
                     <div class="col-md-6">
+                        <label for="gestor" class="form-label">Gestor</label>
+                        <input type="text" class="form-control" id="gestor" name="gestor"
+                            value="{{ session()->get('pedido_gestor') }}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="matricula" class="form-label">Matrícula</label>
+                        <input type="text" class="form-control" id="matricula" name="matricula"
+                            value="{{ session()->get('pedido_matricula') }}">
+                    </div>
+
+                    <div class="col-md-6">
                         <label for="motivo_id" class="form-label">Motivo</label>
                         <select class="form-select" id="motivo_id" name="motivo_id">
                             <option value="" selected="true">Exibir Todos ...</option>
@@ -178,7 +198,7 @@
                         <button type="submit" class="btn btn-primary btn-sm"><x-icon icon='search' />
                             {{ __('Search') }}</button>
 
-                        <a href="{{ route('pedidos.index', ['nome' => '', 'matricula' => '', 'cargo' => '', 'setor' => '', 'situacao_id' => '', 'motivo_id' => '', 'data_inicio' => '', 'data_fim' => '']) }}"
+                        <a href="{{ route('pedidos.index', ['nome' => '', 'matricula' => '', 'cargo' => '', 'setor' => '', 'gestor' => '', 'situacao_id' => '', 'motivo_id' => '', 'data_inicio' => '', 'data_fim' => '']) }}"
                             class="btn btn-secondary btn-sm" role="button"><x-icon icon='stars' /> {{ __('Reset') }}</a>
                     </div>
 

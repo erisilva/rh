@@ -82,8 +82,20 @@
                     </td>
 
                     <td colspan="6">
-                        <label for="cargo"><strong>Cargo</strong></label>
-                        <div id="cargo">{{ $row->Setor}}</div>
+                        <label for="setor"><strong>Setor/Unidade</strong></label>
+                        <div id="setor">{{ $row->setor }}</div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="6">
+                        <label for="gestor"><strong>Gestor</strong></label>
+                        <div id="gestor">{{ $row->gestor }}</div>
+                    </td>
+
+                    <td colspan="6">
+                        <label for="matricula"><strong>Matrícula</strong></label>
+                        <div id="matricula">{{ $row->matricula }}</div>
                     </td>
                 </tr>
 

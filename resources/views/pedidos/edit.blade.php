@@ -54,10 +54,28 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="setor" class="form-label">Setor <strong class="text-danger">(*)</strong></label>
+                    <label for="setor" class="form-label">Setor/Unidade <strong class="text-danger">(*)</strong></label>
                     <input type="text" class="form-control @error('setor') is-invalid @enderror" name="setor"
                         value="{{ old('setor') ?? $pedido->setor }}">
                     @error('setor')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="gestor" class="form-label">Nome do Gestor <strong class="text-danger">(*)</strong></label>
+                    <input type="text" class="form-control @error('gestor') is-invalid @enderror" name="gestor"
+                        value="{{ old('gestor') ?? $pedido->gestor }}">
+                    @error('gestor')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6">
+                    <label for="matricula" class="form-label">Matrícula do Gestor<strong class="text-danger">(*)</strong></label>
+                    <input type="text" class="form-control @error('matricula') is-invalid @enderror" name="matricula"
+                        value="{{ old('matricula') ?? $pedido->matricula }}">
+                    @error('matricula')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

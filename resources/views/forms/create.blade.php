@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label for="setor" class="col-md-4 col-form-label text-md-end">Setor: <strong
+                        <label for="setor" class="col-md-4 col-form-label text-md-end">Setor/Unidade: <strong
                                 class="text-danger">(*)</strong></label>
 
                         <div class="col-md-6">
@@ -77,6 +77,38 @@
                                 name="setor" value="{{ old('setor') }}" required>
 
                             @error('setor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="gestor" class="col-md-4 col-form-label text-md-end">Nome do Gestor: <strong
+                                class="text-danger">(*)</strong></label>
+
+                        <div class="col-md-6">
+                            <input id="gestor" type="text" class="form-control @error('gestor') is-invalid @enderror"
+                                name="gestor" value="{{ old('gestor') }}" required>
+
+                            @error('gestor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="matricula" class="col-md-4 col-form-label text-md-end">Matrícula do Gestor: <strong
+                                class="text-danger">(*)</strong></label>
+
+                        <div class="col-md-6">
+                            <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror"
+                                name="matricula" value="{{ old('matricula') }}" required>
+
+                            @error('matricula')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

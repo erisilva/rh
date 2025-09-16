@@ -33,9 +33,9 @@ class PedidoController extends Controller
 
         return view('pedidos.index', [
             'pedidos' => Pedido::orderBy('created_at', 'desc')
-                            ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))
+                            ->filter(request(['nome', 'cargo', 'setor', 'gestor', 'matricula', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))
                             ->paginate(session('perPage', '5'))
-                            ->appends(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))
+                            ->appends(request(['nome', 'cargo', 'setor', 'gestor', 'matricula', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))
                             ->withPath(env('APP_URL', null) . '/pedidos'),
             'perpages' => Perpage::orderBy('valor')->get(),
             'motivos' => Motivo::orderBy('descricao', 'asc')->get(),
@@ -68,6 +68,8 @@ class PedidoController extends Controller
             'cpf' => ['required', 'max:15', new Cpf()],
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
+            'gestor' => 'required|max:255',
+            'matricula' => 'required|max:50',
             'motivo_id' => 'required|exists:motivos,id',
             'situacao_id' => 'required|exists:situacaos,id',
             'nota' => 'required|max:750',
@@ -125,6 +127,8 @@ class PedidoController extends Controller
             'cpf' => ['required', 'max:15', new Cpf()],
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
+            'gestor' => 'required|max:255',
+            'matricula' => 'required|max:50',
             'motivo_id' => 'required|exists:motivos,id',
             'situacao_id' => 'required|exists:situacaos,id',
             'nota' => 'required|max:750',
@@ -192,7 +196,7 @@ class PedidoController extends Controller
                         ->whereColumn('situacaos.id', 'pedidos.situacao_id')
                         ->limit(1)])
                     ->orderBy('nome', 'asc')
-                    ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']));
+                    ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim', 'gestor', 'matricula']));
 
         $list = $pedidos->get()->toArray();
 
@@ -223,7 +227,7 @@ class PedidoController extends Controller
 
         return Pdf::loadView('pedidos.report', [
             'dataset' => Pedido::orderBy('id', 'asc')
-                        ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim']))->get()
+                        ->filter(request(['nome', 'cargo', 'setor', 'situacao_id', 'motivo_id', 'data_inicio', 'data_fim', 'gestor', 'matricula']))->get()
         ])->download(__('Pedidos') . '_' . date("Y-m-d H:i:s") . '.pdf');
     }
 }

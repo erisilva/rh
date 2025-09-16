@@ -2,14 +2,14 @@
 
 return [
     'disable' => env('CAPTCHA_DISABLE', false),
-    'characters' => ['2', '3', '4', '6', '7', '8', '9', 'A', 'M', 'X', 'T', 'Z', 'B', 'H', 'E', 'F' ],
+    'characters' => ['2', '3', '4', '6', '7', '8', '9', 'A', 'M', 'X', 'T', 'Z', 'B', 'E', 'F' ],
     'default' => [
-        'length' => 5,
+        'length' => 4,
         'width' => 260,
         'height' => 80,
         'quality' => 90,
         'math' => false,
-        'expire' => 60,
+        'expire' => 300,
         'encrypt' => false,
         'fontColors' => ['#0A0E0F', '#762323', '#2A0E62', '#495159', '#185796', '#B81B22', '#BA9B03'],
     ],

@@ -118,6 +118,8 @@ class FormController extends Controller
             'cpf' => ['required', 'max:15', new Cpf()],
             'cargo' => 'required|max:150',
             'setor' => 'required|max:150',
+            'gestor' => 'required|max:255',
+            'matricula' => 'required|max:50',
             'motivo_id' => 'required|exists:motivos,id',
             'captcha' => 'required|captcha',
             'nota' => 'required|max:750',

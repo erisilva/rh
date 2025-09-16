@@ -16,6 +16,8 @@ class Pedido extends Model
         'cargo',
         'setor',
         'nota',
+        'gestor',
+        'matricula',
     ];
 
     protected $casts = [
@@ -65,6 +67,12 @@ class Pedido extends Model
         if (!session()->exists('pedido_data_fim')){
             session(['pedido_data_fim' => '']);
         }
+        if (!session()->exists('pedido_gestor')){
+            session(['pedido_gestor' => '']);
+        }
+        if (!session()->exists('pedido_matricula')){
+            session(['pedido_matricula' => '']);
+        }
 
         // update session values if the request has a value
         if (Arr::exists($filters, 'nome')) {
@@ -98,6 +106,12 @@ class Pedido extends Model
         if (Arr::exists($filters, 'data_fim')) {
             session(['pedido_data_fim' => $filters['data_fim'] ?? '']);
         }
+        if (Arr::exists($filters, 'gestor')) {
+            session(['pedido_gestor' => $filters['gestor'] ?? '']);
+        }
+        if (Arr::exists($filters, 'matricula')) {
+            session(['pedido_matricula' => $filters['matricula'] ?? '']);
+        }
 
         // query if session filters are not empty
         if (trim(session()->get('pedido_nome')) !== '') {
@@ -130,6 +144,14 @@ class Pedido extends Model
 
         if (trim(session()->get('pedido_data_fim')) !== '') {
             $query->where('created_at', '<=',  date('Y-m-d', strtotime(str_replace('/', '-', session()->get('pedido_data_fim')))));
+        }
+
+        if (trim(session()->get('pedido_gestor')) !== '') {
+            $query->where('gestor', 'like', '%' . session()->get('pedido_gestor') . '%');
+        }
+
+        if (trim(session()->get('pedido_matricula')) !== '') {
+            $query->where('matricula', 'like', '%' . session()->get('pedido_matricula') . '%');
         }
     }
 }

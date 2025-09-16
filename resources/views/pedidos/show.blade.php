@@ -18,39 +18,61 @@
         </nav>
     </div>
 
-    <x-card title="Pedido">
-        <ul class="list-group list-group-flush">
+    <form>
 
-            <li class="list-group-item">
-                {{ 'Nome do Colaborador : ' . $pedido->nome }}
-            </li>
+        <div class="container">
+            <div class="row g-3">
 
-            <li class="list-group-item">
-                {{ 'Cargo : ' . $pedido->cargo }}
-            </li>
+                <div class="col-md-9">
+                    <label for="nome" class="form-label">Nome do Colaborador</label>
+                    <input type="text" class="form-control" name="nome" value="{{ $pedido->nome }}" disabled>
+                </div>
 
-            <li class="list-group-item">
-                {{ 'CPF : ' . $pedido->cpf }}
-            </li>
+                <div class="col-md-3">
+                    <label for="cpf" class="form-label">CPF</label>
+                    <input type="text" class="form-control" name="cpf" id="cpf" value="{{ $pedido->cpf }}" disabled>
+                </div>
 
-            <li class="list-group-item">
-                {{ 'Setor : ' . $pedido->setor }}
-            </li>
+                <div class="col-md-6">
+                    <label for="cargo" class="form-label">Cargo</label>
+                    <input type="text" class="form-control" name="cargo" value="{{ $pedido->cargo }}" disabled>
+                </div>
 
-            <li class="list-group-item">
-                {{ 'Situação : ' . $pedido->situacao->descricao }}
-            </li>
+                <div class="col-md-6">
+                    <label for="setor" class="form-label">Setor/Unidade</label>
+                    <input type="text" class="form-control" name="setor" value="{{ $pedido->setor }}" disabled>
+                </div>
 
-            <li class="list-group-item">
-                {{ 'Motivo : ' . $pedido->motivo->descricao }}
-            </li>
+                <div class="col-md-6">
+                    <label for="gestor" class="form-label">Gestor</label>
+                    <input type="text" class="form-control" name="gestor" value="{{ $pedido->gestor }}" disabled>
+                </div>
 
-            <li class="list-group-item">
-                {{ 'Descrição do pedido : ' . $pedido->nota }}
-            </li>
+                <div class="col-md-6">
+                    <label for="matricula" class="form-label">Matrícula</label>
+                    <input type="text" class="form-control" name="matricula" value="{{ $pedido->matricula }}" disabled>
+                </div>
 
-        </ul>
-    </x-card>
+                <div class="col-md-6">
+                    <label for="motivo" class="form-label">Motivo</label>
+                    <input type="text" class="form-control" name="motivo" value="{{ $pedido->motivo->descricao }}" disabled>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="situacao" class="form-label">Situação</label>
+                    <input type="text" class="form-control" name="situacao" value="{{ $pedido->situacao->descricao }}" disabled>
+                </div>
+
+                <div class="col-md-12">
+                    <label for="nota" class="form-label">Nota</label>
+                    <textarea class="form-control" name="nota" rows="5" disabled>{{ $pedido->nota }}</textarea>
+                </div>
+
+            </div>
+        </div>
+
+
+    </form>
 
     @can('pedido-delete')
         <x-btn-trash />
