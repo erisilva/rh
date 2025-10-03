@@ -147,7 +147,7 @@
                         </div>
 
                         @error('nota')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="text-danger"><strong>{{ $message }}</strong></div>
                         @enderror
                     </div>
 
